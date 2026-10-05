@@ -1,0 +1,13 @@
+unit role CSS::Snapshot2026::Lists::Gen::External;
+method identifier (|) {
+    ...
+}
+method image (|) {
+    ...
+}
+method integer (|) {
+    ...
+}
+method string (|) {
+    ...
+}

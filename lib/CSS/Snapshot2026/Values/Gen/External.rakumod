@@ -1,0 +1,13 @@
+unit role CSS::Snapshot2026::Values::Gen::External;
+method dimension (|) {
+    ...
+}
+method length (|) {
+    ...
+}
+method number (|) {
+    ...
+}
+method percentage (|) {
+    ...
+}

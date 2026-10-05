@@ -1,0 +1,73 @@
+#!/usr/bin/env perl6
+
+use Test;
+use JSON::Fast;
+
+use CSS::Module::CSS21;
+use CSS::Module::CSS3;
+use CSS::Snapshot2026;
+use CSS::Grammar::Test;
+use CSS::Writer;
+
+my CSS::Module $css21 = CSS::Module::CSS21.module;
+my CSS::Module $css3  = CSS::Module::CSS3.module;
+my CSS::Module $snapshot2026  = CSS::Snapshot2026.module;
+
+my %seen;
+
+for 't/css21-properties.json'.IO.lines {
+
+    next if .substr(0,2) eq '//';
+
+    my %expected = %( from-json($_) );
+    my $prop = %expected<prop>.lc;
+
+    my $input = sprintf '{%s: %s}', $prop, %expected<decl>;
+    my $writer = CSS::Writer.new;
+
+    subtest $input, {
+        for { :module($css21), :proforma<inherit>},
+        { :module($css3), :proforma<inherit initial>, :$writer},
+        { :module($snapshot2026), :proforma<inherit initial>, :$writer}
+        -> % ( :$module!, :$proforma!, :$writer=Any) {
+
+            my $level = $module.name;
+            temp %expected ,= .Hash with %expected{$level};
+            my $expr = %expected<expr>;
+            %expected<ast> = $expr ?? { :declarations[{ :property{ :ident($prop), :$expr } }] } !! Any;
+
+            subtest $level, {
+	        CSS::Grammar::Test::parse-tests($input, :$module,
+					        :rule<declarations>,
+                                                :$writer,
+					        :%expected );
+
+	        unless %seen{$prop}{$level}++ {
+	            # usage and inheritence  tests
+	            my $junk = sprintf '{%s: %s}', $prop, 'junk +-42';
+
+	            my $actions = $module.actions.new;
+	            my $p = $module.grammar.parse( $junk, :rule<declarations>, :$actions);
+	            ok($p.defined && ~$p eq $junk, "$prop: able to parse unexpected input")
+	                or note "unable to parse declaration list: $junk";
+
+	            ok($actions.warnings, "$prop: unexpected input produces warning")
+		    or diag $actions.warnings;
+
+	            for @$proforma -> $misc {
+		        my $decl = sprintf '{%s: %s}', $prop, $misc;
+
+		        my $ast = { :declarations[{ :property{ :ident($prop), :expr[ { :keyw($misc)} ] } }] };
+
+                        CSS::Grammar::Test::parse-tests($decl, :$module,
+						        :rule<declarations>,
+						        :expected({ :$ast }) );
+                    }
+                }
+            }
+        }
+    }
+    last if $input.contains('rect(');
+}
+
+done-testing;

@@ -1,0 +1,70 @@
+{ "prop" : "alignment-baseline", "decl" : "after-edge", "expr" : [ { "keyw" : "after-edge" } ] }
+{ "prop" : "alignment-baseline", "decl" : "baseline", "expr" : [ { "keyw" : "baseline" } ] }
+{ "prop" : "baseline-shift", "decl" : "super", "expr" : [ { "keyw" : "super" } ] }
+{ "prop" : "baseline-shift", "decl" : "1.5em", "expr" : [ { "em" : 1.5 } ] }
+{ "prop" : "baseline-shift", "decl" : "4%", "expr" : [ { "percent" : 4 } ] }
+// { "prop" : "clip-path",  "decl" : "??", "expr" : [ { "xx" : "yy" } ] }  todo https://drafts.csswg.org/css-shapes-1/#typedef-basic-shape
+// { "prop" : "clip-rule",  "decl" : "??", "expr" : [ { "xx" : "yy" } ] } todo
+{ "prop" : "color", "decl" : "red", "expr" : [ { "rgb" : [{"num":255},{"num":0},{"num":0}] } ] }
+{ "prop" : "color", "decl" : "rgb(10,20,30)", "expr" : [ { "rgb" : [{"num":10},{"num":20},{"num":30}] } ] }
+{ "prop" : "color-interpolation", "decl" : "sRGB", "expr" : [ { "keyw" : "srgb" } ] }
+{ "prop" : "color-interpolation", "decl" : "Srgb", "expr" : [ { "keyw" : "srgb" } ] }
+{ "prop" : "color-interpolation-filters", "decl" : "Srgb", "expr" : [ { "keyw" : "srgb" } ] }
+{ "prop" : "color-rendering", "decl" : "optimizeSpeed", "expr" : [ { "keyw" : "optimizespeed" } ] }
+{ "prop" : "cursor",  "decl" : "e-resize", "expr" : [ { "keyw" : "e-resize" } ] }
+{ "prop" : "direction", "decl" : "ltr", "expr" : [ { "keyw" : "ltr" } ] }
+{ "prop" : "display", "decl" : "table-cell", "expr" : [ { "keyw" : "table-cell" } ] }
+{ "prop" : "dominant-baseline", "decl" : "hanging", "expr" : [ { "keyw" : "hanging" } ] }
+{ "prop" : "fill", "decl" : "rgb(10,20,10%)", "expr" : [ { "rgb" : [{"num" : 10}, {"num" : 20}, {"num" : 26}] } ] }
+{ "prop" : "fill-opacity", "decl" : "0.75", "expr" : [ { "num" : 0.75 } ] }
+{ "prop" : "fill-opacity", "decl" : "75%", "expr" : [ { "percent" : 75 } ] }
+{ "prop" : "fill-rule", "decl" : "evenOdD", "expr" : [ { "keyw" : "evenodd" } ] }
+{ "prop" : "font", "decl" : "12pt/14pt sans-serif", "expr" : [ { "expr:font-size" : [ { "pt" : 12 } ] }, { "op" : "/" }, { "expr:line-height" : [ { "pt" : 14 } ] }, { "expr:font-family" : [ { "keyw" : "sans-serif" } ] } ] }
+{ "prop" : "font-size-adjust",  "decl" : ".7", "expr" : [ { "num" : 0.7 } ] }
+{ "prop" : "font-variant", "decl" : "small-Caps", "expr" : [ { "keyw" : "small-caps" } ] }
+{ "prop" : "glyph-orientation-vertical", "decl" : "45deg", "expr" : [ { "deg" : 45 } ] }
+{ "prop" : "glyph-orientation-vertical", "decl" : "7", "expr" : [ { "num" : 7 } ] }
+{ "prop" : "image-rendering", "decl" : "optimizeQuality", "expr" : [ { "keyw" : "optimizequality" } ] }
+{ "prop" : "letter-spacing", "decl" : "normal", "expr" : [ { "keyw" : "normal" } ] }
+{ "prop" : "lighting-color",  "decl" : "blue", "expr" : [ { "rgb" : [{"num":0}, {"num":0}, {"num":255}] } ] }
+{ "prop" : "line-height", "decl" : "90%", "expr" : [ { "percent" : 90 } ] }
+{ "prop" : "line-height", "decl" : "normal", "expr" : [ { "keyw" : "normal" } ] }
+{ "prop" : "line-height", "decl" : "42", "expr" : [ { "num" : 42 } ] }
+{ "prop" : "marker-start", "decl" : "none", "expr" : [ { "keyw" : "none" } ] }
+{ "prop" : "marker-start", "decl" : "url(http://www.example.com/pinkish.gif)", "expr" : [ { "url" : "http://www.example.com/pinkish.gif" } ] }
+{ "prop" : "marker-mid", "decl" : "none", "expr" : [ { "keyw" : "none" } ] }
+{ "prop" : "marker-end", "decl" : "none", "expr" : [ { "keyw" : "none" } ] }
+{ "prop" : "marker", "decl" : "none url(http://www.example.com/pinkish.gif)", "expr" : [ {"expr:marker-start" : [{"keyw":"none"}]}, {"expr:marker-mid" : [{"url":"http://www.example.com/pinkish.gif"} ] } ] }
+//{ "prop" : "mask",  "decl" : "??", "expr" : [ { "xx" : "yy" } ] } todo - https://drafts.fxtf.org/css-masking-1/#the-mask
+{ "prop" : "opacity", "decl" : "0.75", "expr" : [ { "num" : 0.75 } ] }
+{ "prop" : "opacity", "decl" : "75%", "expr" : [ { "percent" : 75 } ] }
+{ "prop" : "overflow", "decl" : "hidden", "expr" : [ { "keyw" : "hidden" } ] }
+{ "prop" : "paint-order", "decl" : "fill stroke", "expr" : [ { "keyw" : "fill" }, { "keyw" : "stroke" } ] }
+{ "prop" : "pointer-events",  "decl" : "stroke", "expr" : [ { "keyw" : "stroke" } ] }
+{ "prop" : "shape-rendering", "decl" : "crispEdges", "expr" : [ { "keyw" : "crispedges" } ] }
+{ "prop" : "stop-color",  "decl" : "blue", "expr" : [ { "rgb" : [{"num":0}, {"num":0}, {"num":255}] } ] }
+{ "prop" : "stop-opacity", "decl" : "0.75", "expr" : [ { "num" : 0.75 } ] }
+{ "prop" : "stop-opacity", "decl" : "75%", "expr" : [ { "percent" : 75 } ] }
+{ "prop" : "stroke", "decl" : "none", "expr" : [ { "keyw" : "none"}] }
+{ "prop" : "stroke", "decl" : "black", "expr" : [ { "rgb" : [{"num":0}, {"num":0}, {"num":0}] } ] }
+{ "prop" : "stroke-dasharray", "decl" : "20,10", "expr" : [ {"num":20}, {"op":","}, {"num":10}] }
+{ "prop" : "stroke-dasharray", "decl" : "em,2em", "expr" : [ {"em":1}, {"op":","}, {"em":2}] }
+{ "prop" : "stroke-dashoffset", "decl" : "3em", "expr" : [ {"em":3} ] }
+{ "prop" : "stroke-linecap", "decl" : "round", "expr" : [ {"keyw":"round"} ] }
+{ "prop" : "stroke-linejoin", "decl" : "bevel", "expr" : [ {"keyw":"bevel"} ] }
+{ "prop" : "stroke-miterlimit",  "decl" : "7", "expr" : [ { "num" : 7 } ] }
+{ "prop" : "stroke-opacity", "decl" : "0.75", "expr" : [ { "num" : 0.75 } ] }
+{ "prop" : "stroke-opacity", "decl" : "75%", "expr" : [ { "percent" : 75 } ] }
+{ "prop" : "stroke-width", "decl" : ".1em", "expr" : [ { "em" : 0.1 } ] }
+{ "prop" : "stroke-width", "decl" : "3", "expr" : [ { "num" : 3 } ] }
+{ "prop" : "stroke-width", "decl" : "5%", "expr" : [ { "percent" : 5 } ] }
+{ "prop" : "text-anchor", "decl" : "start", "expr" : [ { "keyw" : "start" } ] }
+{ "prop" : "text-decoration", "decl" : "underline blink", "expr" : [ { "keyw" : "underline" }, { "keyw" : "blink" } ] }
+{ "prop" : "text-overflow",  "decl" : "clip", "expr" : [ { "keyw" : "clip" } ] }
+{ "prop" : "text-rendering", "decl" : "geometricPrecision", "expr" : [ { "keyw" : "geometricprecision" } ] }
+{ "prop" : "unicode-bidi", "decl" : "embed", "expr" : [ { "keyw" : "embed" } ] }
+{ "prop" : "vector-effect",  "decl" : "none", "expr" : [ { "keyw" : "none" } ] }
+{ "prop" : "visibility", "decl" : "hidden", "expr" : [ { "keyw" : "hidden" } ] }
+{ "prop" : "white-space", "decl" : "pre", "expr" : [ { "keyw" : "pre" } ] }
+{ "prop" : "word-spacing", "decl" : "1.5em", "expr" : [ { "em" : 1.5 } ] }
+{ "prop" : "writing-mode", "decl" : "rl-tb", "expr" : [ { "keyw" : "rl-tb" } ] }

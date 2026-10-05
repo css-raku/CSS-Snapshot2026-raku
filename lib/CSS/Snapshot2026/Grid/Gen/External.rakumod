@@ -1,0 +1,16 @@
+unit role CSS::Snapshot2026::Grid::Gen::External;
+method custom-ident (|) {
+    ...
+}
+method flex (|) {
+    ...
+}
+method integer (|) {
+    ...
+}
+method length-percentage (|) {
+    ...
+}
+method string (|) {
+    ...
+}

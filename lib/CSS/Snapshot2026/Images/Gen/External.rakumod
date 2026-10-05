@@ -1,0 +1,19 @@
+unit role CSS::Snapshot2026::Images::Gen::External;
+method angle (|) {
+    ...
+}
+method color (|) {
+    ...
+}
+method length (|) {
+    ...
+}
+method length-percentage (|) {
+    ...
+}
+method position (|) {
+    ...
+}
+method url (|) {
+    ...
+}
