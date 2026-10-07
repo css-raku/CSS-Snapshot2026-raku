@@ -98,8 +98,10 @@ sub MAIN(Str $working-directory = '.' ) {
                 default { last }
             }
         }
+        my CSS::Specification::Compiler::Make $maker .= new;
         my %inherit = %props if $inherit;
-        %props = CSS::Specification::Compiler::Make.make-module($working-directory, $root, @sources, :$link, :%inherit);
+        %props = $maker.make-module($working-directory, $root, @sources, :%inherit);
+        $maker.link if $link;
     }
 }
 
