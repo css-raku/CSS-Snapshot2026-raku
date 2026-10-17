@@ -1,5 +1,4 @@
 unit role CSS::Snapshot2026::Link::External;
-
 use CSS::Snapshot2026::Gen::External;
 also does CSS::Snapshot2026::Gen::External;
 use CSS::Snapshot2026::Align::Gen::External;
@@ -73,4 +72,4 @@ also does CSS::Snapshot2026::WritingModes::Gen::External;
 use CSS::Snapshot2026::WillChange::Gen::External;
 also does CSS::Snapshot2026::WillChange::Gen::External;
 use CSS::Snapshot2026::CSS21::Gen::External;
-also does CSS::Snapshot2026::CSS21::Gen::External;
+also does CSS::Snapshot2026::CSS21::Gen::External

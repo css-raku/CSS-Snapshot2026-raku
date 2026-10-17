@@ -4,7 +4,18 @@ use NativeCall;
 use CSS::Module::Property;
 
 module CSS::Snapshot2026::Lists::AtCounterStyle::Metadata {
-    BEGIN our $property = ${:additive-symbols(${:default("n/a"), :inherit(Bool::False), :synopsis("[ <integer [0,∞]> \&\& <symbol> ]#")}), :fallback(${:default("decimal"), :inherit(Bool::False), :synopsis("<counter-style-name>")}), :negative(${:default("\"-\""), :inherit(Bool::False), :synopsis("<symbol> <symbol>?")}), :pad(${:default("0 \"\""), :inherit(Bool::False), :synopsis("<integer [0,∞]> \&\& <symbol>")}), :prefix(${:default("\"\""), :inherit(Bool::False), :synopsis("<symbol>")}), :range(${:default("auto"), :inherit(Bool::False), :synopsis("[ [ <integer> | infinite ]\{2} ]# | auto")}), :speak-as(${:default("auto"), :inherit(Bool::False), :synopsis("auto | bullets | numbers | words | spell-out | <counter-style-name>")}), :suffix(${:default("\". \""), :inherit(Bool::False), :synopsis("<symbol>")}), :symbols(${:default("n/a"), :inherit(Bool::False), :synopsis("<symbol>+")}), :system(${:default("symbolic"), :inherit(Bool::False), :synopsis("cyclic | numeric | alphabetic | symbolic | additive | [fixed <integer>?] | [ extends <counter-style-name> ]")})};
+    BEGIN our $property = %(
+         :additive-symbols(${:default("n/a"), :!inherit, :synopsis("[ <integer [0,∞]> \&\& <symbol> ]#")}),
+         :fallback(${:default("decimal"), :!inherit, :synopsis("<counter-style-name>")}),
+         :negative(${:default("\"-\""), :!inherit, :synopsis("<symbol> <symbol>?")}),
+         :pad(${:default("0 \"\""), :!inherit, :synopsis("<integer [0,∞]> \&\& <symbol>")}),
+         :prefix(${:default("\"\""), :!inherit, :synopsis("<symbol>")}),
+         :range(${:default("auto"), :!inherit, :synopsis("[ [ <integer> | infinite ]\{2} ]# | auto")}),
+         :speak-as(${:default("auto"), :!inherit, :synopsis("auto | bullets | numbers | words | spell-out | <counter-style-name>")}),
+         :suffix(${:default("\". \""), :!inherit, :synopsis("<symbol>")}),
+         :symbols(${:default("n/a"), :!inherit, :synopsis("<symbol>+")}),
+         :system(${:default("symbolic"), :!inherit, :synopsis("cyclic | numeric | alphabetic | symbolic | additive | [fixed <integer>?] | [ extends <counter-style-name> ]")}),
+       );
     our enum prop-names <additive-symbols fallback negative pad prefix range speak-as suffix symbols system>;
     our sub index {
         state $ //= do {

@@ -4,7 +4,11 @@ use NativeCall;
 use CSS::Module::Property;
 
 module CSS::Snapshot2026::Color::AtColorProfile::Metadata {
-    BEGIN our $property = ${:components(${:default("n/a"), :inherit(Bool::False), :synopsis("<ident>#")}), :rendering-intent(${:default("relative-colorimetric"), :inherit(Bool::False), :synopsis("relative-colorimetric | absolute-colorimetric | perceptual | saturation")}), :src(${:default("n/a"), :inherit(Bool::False), :synopsis("<url>")})};
+    BEGIN our $property = %(
+         :components(${:default("n/a"), :!inherit, :synopsis("<ident>#")}),
+         :rendering-intent(${:default("relative-colorimetric"), :!inherit, :synopsis("relative-colorimetric | absolute-colorimetric | perceptual | saturation")}),
+         :src(${:default("n/a"), :!inherit, :synopsis("<url>")}),
+       );
     our enum prop-names <components rendering-intent src>;
     our sub index {
         state $ //= do {

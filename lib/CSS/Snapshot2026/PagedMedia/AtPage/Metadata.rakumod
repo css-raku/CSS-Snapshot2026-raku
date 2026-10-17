@@ -4,7 +4,17 @@ use NativeCall;
 use CSS::Module::Property;
 
 module CSS::Snapshot2026::PagedMedia::AtPage::Metadata {
-    BEGIN our $property = ${:bleed(${:default("auto"), :inherit(Bool::False), :synopsis("auto | <length>")}), :margin(${:box(Bool::True), :edges($["margin-top", "margin-right", "margin-bottom", "margin-left"]), :inherit(Bool::False), :synopsis("<margin-width>\{1,4}")}), :margin-bottom(${:default("0"), :edge("margin"), :inherit(Bool::False), :synopsis("<margin-width>")}), :margin-left(${:default("0"), :edge("margin"), :inherit(Bool::False), :synopsis("<margin-width>")}), :margin-right(${:default("0"), :edge("margin"), :inherit(Bool::False), :synopsis("<margin-width>")}), :margin-top(${:default("0"), :edge("margin"), :inherit(Bool::False), :synopsis("<margin-width>")}), :marks(${:default("none"), :inherit(Bool::False), :synopsis("none | [ crop || cross ]")}), :page-orientation(${:default("upright"), :inherit(Bool::False), :synopsis("upright | rotate-left | rotate-right")}), :size(${:default("auto"), :inherit(Bool::False), :synopsis("<length>\{1,2} | auto | [ <page-size> || [ portrait | landscape ] ]")})};
+    BEGIN our $property = %(
+         :bleed(${:default("auto"), :!inherit, :synopsis("auto | <length>")}),
+         :margin(${:box(Bool::True), :edges($["margin-top", "margin-right", "margin-bottom", "margin-left"]), :!inherit, :synopsis("<margin-width>\{1,4}")}),
+         :margin-bottom(${:default("0"), :edge("margin"), :!inherit, :synopsis("<margin-width>")}),
+         :margin-left(${:default("0"), :edge("margin"), :!inherit, :synopsis("<margin-width>")}),
+         :margin-right(${:default("0"), :edge("margin"), :!inherit, :synopsis("<margin-width>")}),
+         :margin-top(${:default("0"), :edge("margin"), :!inherit, :synopsis("<margin-width>")}),
+         :marks(${:default("none"), :!inherit, :synopsis("none | [ crop || cross ]")}),
+         :page-orientation(${:default("upright"), :!inherit, :synopsis("upright | rotate-left | rotate-right")}),
+         :size(${:default("auto"), :!inherit, :synopsis("<length>\{1,2} | auto | [ <page-size> || [ portrait | landscape ] ]")}),
+       );
     our enum prop-names <bleed margin margin-bottom margin-left margin-right margin-top marks page-orientation size>;
     our sub index {
         state $ //= do {

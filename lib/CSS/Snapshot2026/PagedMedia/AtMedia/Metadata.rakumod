@@ -4,7 +4,8 @@ use NativeCall;
 use CSS::Module::Property;
 
 module CSS::Snapshot2026::PagedMedia::AtMedia::Metadata {
-    BEGIN our $property = ${};
+    BEGIN our $property = %(
+       );
     our enum prop-names <>;
     our sub index {
         state $ //= do {

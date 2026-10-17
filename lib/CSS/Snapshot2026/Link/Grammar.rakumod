@@ -1,5 +1,4 @@
 unit grammar CSS::Snapshot2026::Link::Grammar;
-
 use CSS::Snapshot2026::Gen::Grammar;
 also is CSS::Snapshot2026::Gen::Grammar;
 use CSS::Snapshot2026::Align::Gen::Grammar;
@@ -73,4 +72,4 @@ also is CSS::Snapshot2026::WritingModes::Gen::Grammar;
 use CSS::Snapshot2026::WillChange::Gen::Grammar;
 also is CSS::Snapshot2026::WillChange::Gen::Grammar;
 use CSS::Snapshot2026::CSS21::Gen::Grammar;
-also is CSS::Snapshot2026::CSS21::Gen::Grammar;
+also is CSS::Snapshot2026::CSS21::Gen::Grammar

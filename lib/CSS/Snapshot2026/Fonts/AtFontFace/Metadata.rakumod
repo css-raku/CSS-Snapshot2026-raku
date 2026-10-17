@@ -4,7 +4,22 @@ use NativeCall;
 use CSS::Module::Property;
 
 module CSS::Snapshot2026::Fonts::AtFontFace::Metadata {
-    BEGIN our $property = ${:ascent-override(${:default("normal"), :inherit(Bool::False), :synopsis("normal | <percentage [0,∞]>")}), :descent-override(${:default("normal"), :inherit(Bool::False), :synopsis("normal | <percentage [0,∞]>")}), :font-display(${:default("auto"), :inherit(Bool::False), :synopsis("auto | block | swap | fallback | optional")}), :font-family(${:default("N/A"), :inherit(Bool::False), :synopsis("<font-family-name>")}), :font-feature-settings(${:default("normal"), :inherit(Bool::False), :synopsis("normal | <feature-tag-value>#")}), :font-language-override(${:default("normal"), :inherit(Bool::False), :synopsis("normal | <string>")}), :font-named-instance(${:default("auto"), :inherit(Bool::False), :synopsis("auto | <string>")}), :font-style(${:default("auto"), :inherit(Bool::False), :synopsis("auto | normal | italic | left | right | oblique [ <angle [-90deg,90deg]>\{1,2} ]?")}), :font-variation-settings(${:default("normal"), :inherit(Bool::False), :synopsis("normal | [ <string> <number>]#")}), :font-weight(${:default("auto"), :inherit(Bool::False), :synopsis("auto | <font-weight-absolute>\{1,2}")}), :font-width(${:default("auto"), :inherit(Bool::False), :synopsis("auto | <'font-width'>\{1,2}")}), :line-gap-override(${:default("normal"), :inherit(Bool::False), :synopsis("normal | <percentage [0,∞]>")}), :src(${:default("N/A"), :inherit(Bool::False), :synopsis("<font-src>#")}), :unicode-range(${:default("U+0-10FFFF"), :inherit(Bool::False), :synopsis("<unicode-range>#")})};
+    BEGIN our $property = %(
+         :ascent-override(${:default("normal"), :!inherit, :synopsis("normal | <percentage [0,∞]>")}),
+         :descent-override(${:default("normal"), :!inherit, :synopsis("normal | <percentage [0,∞]>")}),
+         :font-display(${:default("auto"), :!inherit, :synopsis("auto | block | swap | fallback | optional")}),
+         :font-family(${:default("N/A"), :!inherit, :synopsis("<font-family-name>")}),
+         :font-feature-settings(${:default("normal"), :!inherit, :synopsis("normal | <feature-tag-value>#")}),
+         :font-language-override(${:default("normal"), :!inherit, :synopsis("normal | <string>")}),
+         :font-named-instance(${:default("auto"), :!inherit, :synopsis("auto | <string>")}),
+         :font-style(${:default("auto"), :!inherit, :synopsis("auto | normal | italic | left | right | oblique [ <angle [-90deg,90deg]>\{1,2} ]?")}),
+         :font-variation-settings(${:default("normal"), :!inherit, :synopsis("normal | [ <string> <number>]#")}),
+         :font-weight(${:default("auto"), :!inherit, :synopsis("auto | <font-weight-absolute>\{1,2}")}),
+         :font-width(${:default("auto"), :!inherit, :synopsis("auto | <'font-width'>\{1,2}")}),
+         :line-gap-override(${:default("normal"), :!inherit, :synopsis("normal | <percentage [0,∞]>")}),
+         :src(${:default("N/A"), :!inherit, :synopsis("<font-src>#")}),
+         :unicode-range(${:default("U+0-10FFFF"), :!inherit, :synopsis("<unicode-range>#")}),
+       );
     our enum prop-names <ascent-override descent-override font-display font-family font-feature-settings font-language-override font-named-instance font-style font-variation-settings font-weight font-width line-gap-override src unicode-range>;
     our sub index {
         state $ //= do {

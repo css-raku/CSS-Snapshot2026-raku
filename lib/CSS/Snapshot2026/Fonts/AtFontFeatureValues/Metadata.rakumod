@@ -4,7 +4,9 @@ use NativeCall;
 use CSS::Module::Property;
 
 module CSS::Snapshot2026::Fonts::AtFontFeatureValues::Metadata {
-    BEGIN our $property = ${:font-display(${:default("auto"), :inherit(Bool::False), :synopsis("auto | block | swap | fallback | optional")})};
+    BEGIN our $property = %(
+         :font-display(${:default("auto"), :!inherit, :synopsis("auto | block | swap | fallback | optional")}),
+       );
     our enum prop-names <font-display>;
     our sub index {
         state $ //= do {

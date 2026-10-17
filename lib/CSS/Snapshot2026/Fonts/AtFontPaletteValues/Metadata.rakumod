@@ -4,7 +4,11 @@ use NativeCall;
 use CSS::Module::Property;
 
 module CSS::Snapshot2026::Fonts::AtFontPaletteValues::Metadata {
-    BEGIN our $property = ${:base-palette(${:default("N/A"), :inherit(Bool::False), :synopsis("light | dark | <integer [0,∞]>")}), :font-family(${:default("N/A"), :inherit(Bool::False), :synopsis("<font-family-name>#")}), :override-colors(${:default("N/A"), :inherit(Bool::False), :synopsis("[ <integer [0,∞]> <color> ]#")})};
+    BEGIN our $property = %(
+         :base-palette(${:default("N/A"), :!inherit, :synopsis("light | dark | <integer [0,∞]>")}),
+         :font-family(${:default("N/A"), :!inherit, :synopsis("<font-family-name>#")}),
+         :override-colors(${:default("N/A"), :!inherit, :synopsis("[ <integer [0,∞]> <color> ]#")}),
+       );
     our enum prop-names <base-palette font-family override-colors>;
     our sub index {
         state $ //= do {
