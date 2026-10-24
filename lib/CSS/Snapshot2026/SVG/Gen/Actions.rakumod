@@ -2,6 +2,9 @@ unit class CSS::Snapshot2026::SVG::Gen::Actions;
 method paint ($/) {
     make $.build.rule($/)
 }
+method svg2-image-rendering ($/) {
+    make $.build.rule($/)
+}
 method dasharray ($/) {
     make $.build.rule($/)
 }

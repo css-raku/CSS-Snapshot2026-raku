@@ -40,15 +40,23 @@ rule prop-val-font-variant { :i [normal | "small-caps" ]& <keyw> }
 #| glyph-orientation-vertical: auto | <angle> | <number>
 rule decl:sym<glyph-orientation-vertical> { :i ("glyph-orientation-vertical") ":" <val(/<prop-val-glyph-orientation-vertical> /, &?ROUTINE.WHY)>}
 rule prop-val-glyph-orientation-vertical { :i [auto & <keyw> ] || <angle> || <number> }
-#| image-rendering: auto | optimizeSpeed | optimizeQuality
+#| image-rendering: <svg2-image-rendering>
 rule decl:sym<image-rendering> { :i ("image-rendering") ":" <val(/<prop-val-image-rendering> /, &?ROUTINE.WHY)>}
-rule prop-val-image-rendering { :i [auto | optimizeSpeed | optimizeQuality ]& <keyw> }
+rule prop-val-image-rendering { :i <svg2-image-rendering> }
+#| <svg2-image-rendering> = auto | optimizeSpeed | optimizeQuality
+rule svg2-image-rendering { :i [auto | optimizeSpeed | optimizeQuality ]& <keyw> }
 #| line-height: normal | <number> | <length-percentage>
 rule decl:sym<line-height> { :i ("line-height") ":" <val(/<prop-val-line-height> /, &?ROUTINE.WHY)>}
 rule prop-val-line-height { :i [normal & <keyw> ] || <number> || <length-percentage> }
-#| marker: see individual properties
+#| marker: <'marker-start'> || <'marker-mid'> || <'marker-end'>
 rule decl:sym<marker> { :i (marker) ":" <val(/<prop-val-marker> /, &?ROUTINE.WHY)>}
-rule prop-val-marker { :i [see & <keyw> ] [individual & <keyw> ] [properties & <keyw> ] }
+rule prop-val-marker { :i [<prop-val-marker-start> :my $*A; <!{
+    $*A++
+}>|| <prop-val-marker-mid> :my $*B; <!{
+    $*B++
+}>|| <prop-val-marker-end> :my $*C; <!{
+    $*C++
+}>]+ }
 #| marker-end: none | <url>
 rule decl:sym<marker-end> { :i ("marker-end") ":" <val(/<prop-val-marker-end> /, &?ROUTINE.WHY)>}
 rule prop-val-marker-end { :i [none & <keyw> ] || <url> }

@@ -10,8 +10,15 @@ rule color:sym<hsla> {<hsla>}
 
 class Actions {
     also is CSS::Module::CSS3::Colors::Actions;
-    method color:sym<rgb>($/)  { make 'rgb'  => $<rgb>.ast<func><args> }
-    method color:sym<rgba>($/) { make 'rgba' => $<rgba>.ast<func><args> }
-    method color:sym<hsl>($/)  { make 'hsl'  => $<hsl>.ast<func><args> }
-    method color:sym<hsla>($/) { make 'hsla' => $<hsla>.ast<func><args> }
+    sub build-color($/, $base is copy) {
+        unless $/<usage> {
+            my @args = @($/.ast<func><args>);
+            $base ~= 'a' if @args.grep({!.<op>}) == 4;
+            $base => @args;
+        }
+    }
+    method color:sym<rgb>($/)  { make $/<rgb>.&build-color('rgb'); }
+    method color:sym<rgba>($/) { make $/<rgba>.&build-color('rgb'); }
+    method color:sym<hsl>($/)  { make $/<hsl>.&build-color('hsl'); }
+    method color:sym<hsla>($/) { make $/<hsla>.&build-color('hsl'); }
 }

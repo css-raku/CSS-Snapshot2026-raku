@@ -14,9 +14,10 @@ fill-opacity	<alpha-value>	1	shapes and text content elements	yes	N/A	visual	yes
 fill-rule	nonzero | evenodd	nonzero	shapes and text content elements	yes	N/A	visual	yes	as specified
 font-variant	normal | small-caps	normal	text content elements	yes	N/A	visual	yes	see individual properties
 glyph-orientation-vertical	auto | <angle> | <number>	auto	text content elements	yes	N/A	visual	no	as specified
-image-rendering	auto | optimizeSpeed | optimizeQuality	auto	images	yes	N/A	visual	yes	as specified
+image-rendering	<svg2-image-rendering>	auto	images	yes	N/A	visual	yes	as specified
+<svg2-image-rendering> = auto | optimizeSpeed | optimizeQuality
 line-height	normal | <number> | <length-percentage>	normal	‘text’ elements	yes	refer to font size of element itself	visual	yes	for <length-percentage> the absolute value; otherwise as specified
-marker	see individual properties	see individual properties	shapes	yes	N/A	visual	yes	see individual properties
+marker	<'marker-start'> || <'marker-mid'> || <'marker-end'>	see individual properties	shapes	yes	N/A	visual	yes	see individual properties
 marker-end marker-mid marker-start	none | <url>	none	shapes	yes	N/A	visual	yes	as specified, but with <url> values (that are part of a <marker-ref>) made absolute
 opacity	<alpha-value>	1	‘svg’, ‘g’, ‘symbol’, ‘marker’, ‘a’, ‘switch’, ‘use’, ‘unknown’ elements and graphics elements	no	N/A	visual	yes	the specified value converted to a number, clamped to the range [0,1]
 overflow	visible | hidden | scroll | auto	visible	elements which establish a new SVG viewport, ‘pattern’ elements and ‘marker’ elements	no	N/A	visual	yes	as specified

@@ -7,22 +7,22 @@ use CSS::Snapshot2026;
 use CSS::Grammar::Test;
 use CSS::Writer;
 
-my $grammar = CSS::Module::CSS3.module.grammar;
-my $actions = CSS::Module::CSS3.module.actions.new;
+my $css3 = CSS::Module::CSS3.module;
+my $snapshot2026 = CSS::Snapshot2026.module;
 my CSS::Writer $writer .= new;
 
 for (
     { :rule<term>, input => 'rgb(70%, 50%, 10%)',
-               ast =>   :rgb[ :num(179), :num(128), :num(26) ],
+               ast =>   :rgb[ :percent(70), :percent(50), :percent(10) ],
     },
     { :rule<term>, input => 'rgba(100%, 128, 0%, 0.1)',
-               ast => :rgba[ :num(255), :num(128), :num(0), :num(.1) ],
+               ast => :rgba[ :percent(100), :num(128), :percent(0), :num(.1) ],
     },
     { :rule<term>, input => 'rgb(100%, 128, 0%, 0.1)',
-               ast => :rgba[ :num(255), :num(128), :num(0), :num(.1) ],
+               ast => :rgba[ :percent(100), :num(128), :percent(0), :num(.1) ],
     },
     { :rule<term>, input => 'rgba(100%, 128, 0%, 10%)',
-               ast => :rgba[ :num(255), :num(128), :num(0), :percent(10) ],
+               ast => :rgba[ :percent(100), :num(128), :percent(0), :percent(10) ],
     },
     { :rule<term>, input => 'hsl(120, 100%, 50%)',
                ast => :hsl[ :num(120), :percent(100), :percent(50) ],
@@ -32,27 +32,30 @@ for (
     },
     # clipping of out-of-range values
     { :rule<term>, input => 'rgba(101%, 50%, -5%, +1.1)',
-               ast => :rgba[ :num(255), :num(128), :num(0), :num(1) ],
+               ast => :rgba[ :percent(101), :percent(50), :percent(-5), :num(1) ],
                :writer{
                    # writer converts rgba(...,1) to rgb(...)
-                   ast => :rgb[ :num(255), :num(128), :num(0) ],
+                   ast => :rgb[ :percent(101), :percent(50), :percent(-5) ],
                    { :rule<token>, type => 'color', units => 'rgb'},
                },
     },
     { :rule<term>, input => 'hsl(120, 110%, -50%)',
-               ast => :hsl[ :num(120), :percent(100), :percent(0) ],
+               ast => :hsl[ :num(120), :percent(110), :percent(-50) ],
+    },
+    { :rule<term>, input => 'hsl(90deg, 110%, -50%)',
+               ast => :hsl[ :deg(90), :percent(110), :percent(-50) ],
     },
     { :rule<term>, input => 'hsla( 180, -100%, 150%, 1.75 )',
-               ast => :hsla[ :num(180), :percent(0), :percent(100), :num(1) ],
+               ast => :hsla[ :num(180), :percent(-100), :percent(150), :num(1) ],
                :writer{
                    # writer converts hsla(...,1) to hsl(...)
-                   ast => :hsl[ :num(180), :percent(0), :percent(100) ],
+                   ast => :hsl[ :num(180), :percent(-100), :percent(150) ],
                    { :rule<token>, type => 'color', units => 'hsl'},
                },
     },
     # a few invalid cases
     { :rule<term>, input => 'rgba(10%,20%,30%)',
-              ast => :rgb[ :num(26), :num(51), :num(77) ],
+              ast => :rgb[ :percent(10), :percent(20), :percent(30) ],
     },
     { :rule<term>, input => 'hsl(junk)',
               ast => Mu,
@@ -76,12 +79,18 @@ for (
 ##                        '@' => "color-profile"},
 ##    },
     ) -> % ( :$rule!, :$input!, *%expected) {
-    CSS::Grammar::Test::parse-tests($grammar, $input,
-				    :$rule,
-				    :$actions,
-				    :suite<css3-color>,
-                                    :$writer,
-				    :%expected );
-}
+
+          subtest $input, {
+              for $snapshot2026 -> $module {
+                  subtest $module.name, {
+                      CSS::Grammar::Test::parse-tests($input,
+                                                      :$module,
+                                                      :$rule,
+                                                      :$writer,
+				                      :%expected );
+                  }
+              }
+          }
+      }
 
 done-testing;

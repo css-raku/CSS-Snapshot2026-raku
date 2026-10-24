@@ -17,7 +17,6 @@ grammar Base {
 }
 
 grammar BaseProperties {
-    also is Base;
     use CSS::Module::CSS3::Values_and_Units;
     also is CSS::Module::CSS3::Values_and_Units::Calc;
 
@@ -32,6 +31,8 @@ grammar BaseProperties {
 
     use CSS::Snapshot2026::Link::External;
     also does CSS::Snapshot2026::Link::External;
+
+    also is Base;
 }
 also is BaseProperties;
 

@@ -14,6 +14,9 @@ method length-percentage (|) {
 method position (|) {
     ...
 }
+method svg2-image-rendering (|) {
+    ...
+}
 method url (|) {
     ...
 }

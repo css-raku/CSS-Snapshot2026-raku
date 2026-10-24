@@ -1,8 +1,5 @@
 unit class CSS::Snapshot2026::Actions;
 
-use CSS::Grammar::Actions;
-also is CSS::Grammar::Actions;
-
 use CSS::Specification::Base::Actions;
 also does CSS::Specification::Base::Actions;
 
@@ -17,6 +14,9 @@ also is CSS::Snapshot2026::Link::Actions;
 
 use     CSS::Snapshot2026::Colors;
 also is CSS::Snapshot2026::Colors::Actions;
+
+use CSS::Grammar::Actions;
+also is CSS::Grammar::Actions;
 
 use CSS::Snapshot2026::Color::AtColorProfile::Gen::Actions;
 also is CSS::Snapshot2026::Color::AtColorProfile::Gen::Actions;

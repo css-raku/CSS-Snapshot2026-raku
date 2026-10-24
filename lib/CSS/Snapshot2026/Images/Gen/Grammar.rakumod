@@ -46,9 +46,9 @@ rule prop-val-image-orientation { :i ["from-image" | none ]& <keyw> || [[<angle>
 }>|| [flip & <keyw> ] :my $*B; <!{
     $*B++
 }>]+] }
-#| image-rendering: auto | smooth | high-quality | pixelated | crisp-edges
+#| image-rendering: auto | smooth | high-quality | pixelated | crisp-edges | <svg2-image-rendering>
 rule decl:sym<image-rendering> { :i ("image-rendering") ":" <val(/<prop-val-image-rendering> /, &?ROUTINE.WHY)>}
-rule prop-val-image-rendering { :i [auto | smooth | "high-quality" | pixelated | "crisp-edges" ]& <keyw> }
+rule prop-val-image-rendering { :i [auto | smooth | "high-quality" | pixelated | "crisp-edges" ]& <keyw> || <svg2-image-rendering> }
 #| object-fit: fill | contain | cover | none | scale-down
 rule decl:sym<object-fit> { :i ("object-fit") ":" <val(/<prop-val-object-fit> /, &?ROUTINE.WHY)>}
 rule prop-val-object-fit { :i [fill | contain | cover | none | "scale-down" ]& <keyw> }

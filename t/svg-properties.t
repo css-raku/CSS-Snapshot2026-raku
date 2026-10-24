@@ -9,6 +9,7 @@ use CSS::Grammar::Test;
 use CSS::Writer;
 
 my CSS::Module $svg = CSS::Module::SVG.module;
+my CSS::Module $snapshot2026 = CSS::Snapshot2026.module;
 
 my %seen;
 
@@ -17,48 +18,51 @@ for 't/svg-properties.json'.IO.lines {
     next if .substr(0,2) eq '//';
     my %expected = %( from-json($_) );
     my $prop = %expected<prop>.lc;
-    my $expr = %expected<expr>;
-
-    %expected<ast> = $expr ?? { :declarations[{ :property{ :ident($prop), :$expr } }] } !! Any;
 
     my $input = sprintf '{%s: %s}', $prop, %expected<decl>;
     my $writer = CSS::Writer.new;
 
     for ({ :module($svg), :proforma<inherit initial>, :$writer},
+         { :module($snapshot2026), :proforma<inherit initial>, :$writer},
         )
    -> % ( :$module!, :$proforma!, :$writer=Any) {
 
         subtest $input, {
             my $level = $module.name;
+            subtest $level, {
+                temp %expected ,= .Hash with %expected{$level};
+                my $expr = %expected<expr>;
 
-            CSS::Grammar::Test::parse-tests($input,
-                                            :$module,
-                                            :rule<declarations>,
-                                            :$writer,
-                                            :%expected );
+                %expected<ast> = $expr ?? { :declarations[{ :property{ :ident($prop), :$expr } }] } !! Any;
 
-            unless %seen{$prop}{$level}++ {
-                # usage and inheritence  tests
-                my $junk = sprintf '{%s: %s}', $prop, 'junk +-42';
+                CSS::Grammar::Test::parse-tests($input,
+                                                :$module,
+                                                :rule<declarations>,
+                                                :$writer,
+                                                :%expected ) || exit;
 
-                my $actions = $module.actions.new;
-                my $p = $module.grammar.parse( $junk, :rule<declarations>, :$actions);
-                ok($p.defined && ~$p eq $junk, "$level $prop: able to parse unexpected input")
-                    or note "unable to parse declaration list: $junk";
+                unless %seen{$prop}{$level}++ {
+                    # usage and inheritence  tests
+                    my $junk = sprintf '{%s: %s}', $prop, 'junk +-42';
 
-                ok($actions.warnings, "$level $prop: unexpected input produces warning")
-                    or diag $actions.warnings;
+                    my $actions = $module.actions.new;
+                    my $p = $module.grammar.parse( $junk, :rule<declarations>, :$actions);
+                    ok($p.defined && ~$p eq $junk, "$level $prop: able to parse unexpected input")
+                        or note "unable to parse declaration list: $junk";
 
-                for @$proforma -> $misc {
-                    my $decl = sprintf '{%s: %s}', $prop, $misc;
-                    my $ast = { :declarations[{ :property{ :ident($prop), :expr[ { :keyw($misc)} ] } }] };
+                    ok($actions.warnings, "$level $prop: unexpected input produces warning")
+                        or diag $actions.warnings;
 
-                    CSS::Grammar::Test::parse-tests($module.grammar, $decl,
-                                                    :rule<declarations>,
-                                                    :$actions,
-                                                    :suite($level),
-                                                    :expected({ :$ast }) );
+                    for @$proforma -> $misc {
+                        my $decl = sprintf '{%s: %s}', $prop, $misc;
+                        my $ast = { :declarations[{ :property{ :ident($prop), :expr[ { :keyw($misc)} ] } }] };
 
+                        CSS::Grammar::Test::parse-tests($module.grammar, $decl,
+                                                        :rule<declarations>,
+                                                        :$actions,
+                                                        :suite($level),
+                                                        :expected({ :$ast }) );
+                    }
                 }
             }
         }
